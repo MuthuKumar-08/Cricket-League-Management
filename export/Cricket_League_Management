@@ -1,0 +1,2399 @@
+/*
+ * Author       : muthukumar2410511_ssn
+ * Generated on : 01-Mar-2026 21:31:31
+ * Version      : 1.0
+ */
+ application "Cricket League Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "America/Los_Angeles"
+ 	time format = "24-hr"
+ 	forms
+	{
+		form matches
+		{
+			displayname = "Matches"
+			success message = "Match Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			team_1
+			(
+				type = list	
+				displayname = "Team 1"
+				values  = teams.ID
+    			displayformat = [team_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			team_2
+			(
+				type = list	
+				displayname = "Team 2"
+				values  = teams.ID
+    			displayformat = [team_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			match_date
+			(
+    			type = date
+				displayname = "Match Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			venue
+			(
+    			type = text
+				displayname = "Venue"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			team_1_score
+			(
+				type = number
+				displayname = "Team 1 Score"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			team_2_score
+			(
+				type = number
+				displayname = "Team 2 Score"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			overs_played
+			(
+				type = decimal
+				displayname = "Overs Played"
+				maxchar = 16
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			winner
+			(
+				type = list	
+				displayname = "Winner"
+				values  = teams.ID
+    			displayformat = [team_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			status
+			(
+				type = radiobuttons
+				displayname = "Status"
+				values = {"Scheduled","Completed"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+			blueprint components
+			{
+				stages = {"Match Scheduled","Match In Progress","Match Postponed","Match Cancelled","Match Completed","Match Abandoned","Match Status Updated","Match Replayed","Match Archived","Match Rescheduled","Match Declared Result"}
+			}
+		}
+		form players
+		{
+			displayname = "Players"
+			success message = "Player Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			player_name
+			(
+    			type = text
+				displayname = "Player Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			team
+			(
+				type = list	
+				displayname = "Team"
+				values  = teams.ID
+    			displayformat = [team_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			role
+			(
+				type = picklist
+				displayname = "Role"
+				values = {"Batsman","Wicketkeeper","All-rounder","Bowler"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			runs
+			(
+				type = number
+				displayname = "Runs"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			wickets
+			(
+				type = number
+				displayname = "Wickets"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			strike_rate
+			(
+				type = decimal
+				displayname = "Strike Rate"
+				maxchar = 16
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			economy
+			(
+				type = decimal
+				displayname = "Economy"
+				maxchar = 16
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form playoff_qualifiers
+		{
+			displayname = "Playoff Qualifiers"
+			success message = "Playoff Qualifier Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			team
+			(
+				type = list	
+				displayname = "Team"
+				values  = teams.ID
+    			displayformat = [team_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form points_table
+		{
+			displayname = "Points Table"
+			success message = "Data Added Successfully!"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			team
+			(
+				type = list	
+				displayname = "Team"
+				values  = teams.ID
+    			displayformat = [team_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			wins
+			(
+				type = number
+				displayname = "Wins"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			losses
+			(
+				type = number
+				displayname = "Losses"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			points
+			(
+				type = number
+				displayname = "Points"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			net_run_rate
+			(
+				type = decimal
+				displayname = "Net Run Rate"
+				maxchar = 16
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+			blueprint components
+			{
+				stages = {"Points Table Entry Created","Points Calculated","Playoff Qualifiers Determined","Points Table Re-validated","Playoff Standings Published","Playoff Qualifiers Re-evaluated","Playoff Schedule Confirmed","Standings Reverted","Playoff Matches in Progress","Schedule Adjusted","Playoff Matches Completed","Playoff Matches Suspended","Champion Declared","Playoff Results Reviewed","Tournament Closed","Playoff Standings Re-evaluated","Playoff Matches Cancelled","Playoff Matches Resumed"}
+			}
+		}
+		form teams
+		{
+			displayname = "Teams"
+			success message = "Team Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			team_id
+			(
+    			type = autonumber
+				displayname = "Team ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			team_name
+			(
+    			type = text
+				displayname = "Team Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			coach_name
+			(
+    			type = text
+				displayname = "Coach Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			home_ground
+			(
+    			type = text
+				displayname = "Home Ground"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			matches_played
+			(
+				type = number
+				displayname = "Matches Played"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			wins
+			(
+				type = number
+				displayname = "Wins"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			losses
+			(
+				type = number
+				displayname = "Losses"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			points
+			(
+				type = number
+				displayname = "Points"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			net_run_rate
+			(
+				type = decimal
+				displayname = "Net Run Rate"
+				maxchar = 16
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	reports
+	{
+		list matches_Report
+		{
+			displayName = "All Matches"
+			show all rows from matches    
+			(
+				team_1 as "Team 1"
+				team_2 as "Team 2"
+				match_date as "Match Date"
+				venue as "Venue"
+				team_1_score as "Team 1 Score"
+				team_2_score as "Team 2 Score"
+				overs_played as "Overs Played"
+				winner as "Winner"
+				status as "Status"
+			)
+		}
+		list points_table_Report
+		{
+			displayName = "Points Table Report"
+			show all rows from points_table    
+			(
+				team as "Team"
+				wins as "Wins"
+				losses as "Losses"
+				points as "Points"
+				net_run_rate as "Net Run Rate"
+			)
+		}
+		list players_Report
+		{
+			displayName = "All Players"
+			show all rows from players    
+			(
+				player_name as "Player Name"
+				team as "Team"
+				role as "Role"
+				runs as "Runs"
+				wickets as "Wickets"
+				strike_rate as "Strike Rate"
+				economy as "Economy"
+			)
+			conditional formatting
+			(
+				"New Formatting1"
+				{
+				condition = (role == "All-rounder")
+				fields = [role]
+				format = "color:#ffffff;background-color:#765f89;"
+				}
+				"New Formatting2"
+				{
+				condition = (role == "Batsman")
+				fields = [role]
+				format = "color:#000000;background-color:#1bbc9b;"
+				}
+				"New Formatting3"
+				{
+				condition = (role == "Bowler")
+				fields = [role]
+				format = "color:#ffffff;background-color:#e84c3d;"
+				}
+				"New Formatting4"
+				{
+				condition = (role == "Wicketkeeper")
+				fields = [role]
+				format = "color:#ffffff;background-color:#3598db;"
+				}
+			)
+		}
+		kanban players_by_role
+		{
+			displayName = "Roles"
+			show all rows from players    
+			(
+				player_name as "Player Name"
+				team as "Team"
+				role as "Role"
+				runs as "Runs"
+				wickets as "Wickets"
+				strike_rate as "Strike Rate"
+				economy as "Economy"
+			)
+			options
+			(
+	 			display field = role
+	 		)
+		}
+		list teams_Report
+		{
+			displayName = "All Teams"
+			show all rows from teams    
+			(
+				team_id as "Team ID"
+				team_name as "Team Name"
+				coach_name as "Coach Name"
+				home_ground as "Home Ground"
+				matches_played as "Matches Played"
+				wins as "Wins"
+				losses as "Losses"
+				points as "Points"
+				net_run_rate as "Net Run Rate"
+			)
+		}
+		list playoff_qualifiers_Report
+		{
+			displayName = "All Playoff Qualifiers"
+			show all rows from playoff_qualifiers    
+			(
+				team as "Team"
+			)
+		}
+	}
+	pages
+	{
+		page DashBoard
+		{
+			displayname = "Dashboard"
+			Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width='28%'\n   \t>\n\t<panel elementName='Panel 1'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\tvAlign = 'middle'\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '7px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = 'theme'\n\twidth = '50px'\n\theight = '50px'\n\ttype = 'icon'\n\tvalue = 'objects-billiard'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmargin = '0px'\n\tpadding = '0px'\n\tcolor = 'theme'\n\tsize = '20px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\tcornerRadius = '2px'\n\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n    borderColor = '#5051F9'\n    borderWidth = '0px'\n\n\t  value = 'thisapp.matches.overs_played.avg'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '3px'\n\tcolor = '#44404C'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'Average of Overs Played'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 2'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\tvAlign = 'middle'\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '7px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = 'theme'\n\twidth = '50px'\n\theight = '50px'\n\ttype = 'icon'\n\tvalue = 'business-percentage-39'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmargin = '0px'\n\tpadding = '0px'\n\tcolor = 'theme'\n\tsize = '20px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\tcornerRadius = '2px'\n\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n    borderColor = '#5051F9'\n    borderWidth = '0px'\n\n\t  value = 'thisapp.points_table.net_run_rate.avg'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '3px'\n\tcolor = '#44404C'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'Average Net Run Rates'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='24%'\n   \t>\n\t<panel elementName='Panel 3'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\tvAlign = 'middle'\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '7px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = 'theme'\n\twidth = '50px'\n\theight = '50px'\n\ttype = 'icon'\n\tvalue = 'business-percentage-39'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmargin = '0px'\n\tpadding = '0px'\n\tcolor = 'theme'\n\tsize = '20px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\tcornerRadius = '2px'\n\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n    borderColor = '#5051F9'\n    borderWidth = '0px'\n\n\t  value = 'thisapp.players.strike_rate.avg'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '3px'\n\tcolor = '#44404C'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'Average Strike Rates'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='23%'\n   \t>\n\t<panel elementName='Panel 4'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\tvAlign = 'middle'\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '7px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = 'theme'\n\twidth = '50px'\n\theight = '50px'\n\ttype = 'icon'\n\tvalue = 'business-money-growth'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmargin = '0px'\n\tpadding = '0px'\n\tcolor = 'theme'\n\tsize = '20px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\tcornerRadius = '2px'\n\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n    borderColor = '#5051F9'\n    borderWidth = '0px'\n\n\t  value = 'thisapp.players.economy.avg'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '3px'\n\tcolor = '#44404C'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'Average Economies'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row><row>\n\t<column\n   \t\t width='40%'\n   \t>\n\t<chart \n\telementName='Chart 1'\n\n\t\n\ttitle = 'Losses by Points'\n\t\n\ttype = 'Scatter'\n\txtitle = 'Losses'\n\tytitle = 'Points'\n\tbgColor = '#FFFFFF'\n\ttheme = 'theme'\n\tlegendPos = 'none'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'teams'\n\txfield = 'losses'\n\tyfields = 'value:points'\n\t\tDelugeCriteria = 'losses is not null'\n/>\n\n</column><column\n   \t\t width='35%'\n   \t>\n\t<panel elementName='Grouped_Panel 1'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='50px'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '20px'\n\tmarginRight = '20px' \n\tcolor = '#000000'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Roles'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '17px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n    borderColor = '#444444'\n    borderWidth = '0px'\n\t\twidth = '50%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n    \tcornerRadius = '2px'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\tvAlign = 'middle'\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '7px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = 'theme'\n\tbgColor = '#F1F2F4'\n\twidth = '50px'\n\theight = '50px'\n\ttype = 'icon'\n\tvalue = 'business-hat'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmargin = '0px'\n\tcolor = 'theme'\n\tsize = '20px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'role == &quot;Batsman&quot;'\n\t  value = 'thisapp.players.role.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '3px'\n\tcolor = '#44404C'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'Batsmen'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpaddingTop = '17px'\n\tpaddingLeft = '0px'\n\tpaddingRight = '17px'\n\tpaddingBottom = '17px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\twidth = '50%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\tvAlign = 'middle'\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '7px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = 'theme'\n\tbgColor = '#F1F2F4'\n\twidth = '50px'\n\theight = '50px'\n\ttype = 'icon'\n\tvalue = 'business-hat'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmargin = '0px'\n\tcolor = 'theme'\n\tsize = '20px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'role == &quot;Wicketkeeper&quot;'\n\t  value = 'thisapp.players.role.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '3px'\n\tcolor = '#44404C'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'Wicketkeeper'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '17px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n    borderColor = '#444444'\n    borderWidth = '0px'\n\t\twidth = '50%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n    \tcornerRadius = '2px'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\tvAlign = 'middle'\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '7px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = 'theme'\n\tbgColor = '#F1F2F4'\n\twidth = '50px'\n\theight = '50px'\n\ttype = 'icon'\n\tvalue = 'business-hat'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmargin = '0px'\n\tcolor = 'theme'\n\tsize = '20px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'role == &quot;All-rounder&quot;'\n\t  value = 'thisapp.players.role.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '3px'\n\tcolor = '#44404C'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'All-rounder'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpaddingTop = '17px'\n\tpaddingLeft = '0px'\n\tpaddingRight = '17px'\n\tpaddingBottom = '17px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\twidth = '50%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\tvAlign = 'middle'\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '7px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = 'theme'\n\tbgColor = '#F1F2F4'\n\twidth = '50px'\n\theight = '50px'\n\ttype = 'icon'\n\tvalue = 'business-hat'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmargin = '0px'\n\tcolor = 'theme'\n\tsize = '20px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'role == &quot;Bowler&quot;'\n\t  value = 'thisapp.players.role.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '3px'\n\tcolor = '#44404C'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'Bowlers'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel_Button 1'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='50px'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '20px'\n\tmarginRight = '20px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#2D2D2D'\n\tsize = '16px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'Quick Links'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '0px'\n\tpaddingLeft = '10px'\n\tpaddingRight = '10px'\n\tpaddingBottom = '10px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '5px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = 'theme'\n\tbgColor = '#F1F2F4'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'ui-2-square-add-08'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n\t\thAlign = 'left'\n>\n\t<text \n    action = 'OpenForm'\n\t\tcomponentLinkName = 'matches'\n\t\ttarget = 'new-window'\n\n\tmarginLeft = '12px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tpadding = '0px'\n\tcolor = 'theme'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\tcornerRadius = '2px'\n\n\n\n\n\n    borderColor = '#5051F9'\n    borderWidth = '0px'\n\n\t  value = 'Add New Matches'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\tpadding = '8px'\n\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '5px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = 'theme'\n\tbgColor = '#F1F2F4'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'ui-2-square-add-08'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n\t\thAlign = 'left'\n>\n\t<text \n    action = 'OpenForm'\n\t\tcomponentLinkName = 'points_table'\n\t\ttarget = 'new-window'\n\n\tmarginLeft = '12px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tpadding = '0px'\n\tcolor = 'theme'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\tcornerRadius = '2px'\n\n\n\n\n\n    borderColor = '#5051F9'\n    borderWidth = '0px'\n\n\t  value = 'Add New Points Table'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\tpadding = '8px'\n\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '5px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = 'theme'\n\tbgColor = '#F1F2F4'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'ui-2-square-add-08'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n\t\thAlign = 'left'\n>\n\t<text \n    action = 'OpenForm'\n\t\tcomponentLinkName = 'players'\n\t\ttarget = 'new-window'\n\n\tmarginLeft = '12px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tpadding = '0px'\n\tcolor = 'theme'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\tcornerRadius = '2px'\n\n\n\n\n\n    borderColor = '#5051F9'\n    borderWidth = '0px'\n\n\t  value = 'Add New Players'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\tpadding = '8px'\n\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '5px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = 'theme'\n\tbgColor = '#F1F2F4'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'ui-2-square-add-08'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n\t\thAlign = 'left'\n>\n\t<text \n    action = 'OpenForm'\n\t\tcomponentLinkName = 'teams'\n\t\ttarget = 'new-window'\n\n\tmarginLeft = '12px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tpadding = '0px'\n\tcolor = 'theme'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\tcornerRadius = '2px'\n\n\n\n\n\n    borderColor = '#5051F9'\n    borderWidth = '0px'\n\n\t  value = 'Add New Teams'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<chart \n\telementName='Chart 2'\n\n\t\n\ttitle = 'Runs by Strike Rate'\n\t\n\ttype = 'Scatter'\n\txtitle = 'Runs'\n\tytitle = 'Strike Rate'\n\tbgColor = '#FFFFFF'\n\ttheme = 'theme'\n\tlegendPos = 'none'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'players'\n\txfield = 'runs'\n\tyfields = 'value:strike_rate'\n\t\tDelugeCriteria = 'runs is not null'\n/>\n\n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<report \n\telementName='Report'\n\n\t\tappLinkName = 'thisapp'\n\t\tlinkName = 'matches_Report'\n\t\n\t\tiszreport = 'false'\n\theightType = 'auto'\n\theightValue = '700'\n\n/>\n</column>\n</row>\n</layout>\n</zml>"
+		}
+	}
+
+
+		workflow
+		{
+
+
+
+
+		blueprint
+		{
+    			match_scheduling_and_status_update as "Match Scheduling and Status Update"
+    			{
+        			type = Blueprint
+        			form = matches
+        			start
+        			{
+            			start stage = "Match Scheduled"
+        			}
+        			stages
+        			{
+           			"Match Scheduled"
+           			{
+           			}
+           			"Match In Progress"
+           			{
+           			}
+           			"Match Postponed"
+           			{
+           			}
+           			"Match Cancelled"
+           			{
+           			}
+           			"Match Completed"
+           			{
+           			}
+           			"Match Abandoned"
+           			{
+           			}
+           			"Match Status Updated"
+           			{
+           			}
+           			"Match Replayed"
+           			{
+           			}
+           			"Match Archived"
+           			{
+           			}
+           			"Match Rescheduled"
+           			{
+           			}
+           			"Match Declared Result"
+           			{
+           			}
+        			}
+        			transitions
+        			{
+    				abandon_match as "Declare Match Abandoned"
+    				{
+         				type = normal
+         				from stage = "Match In Progress"
+         				to stage = "Match Abandoned"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				archive_match as "Archive Match Record"
+    				{
+         				type = normal
+         				from stage = "Match Status Updated"
+         				to stage = "Match Archived"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				cancel_match as "Cancel Match"
+    				{
+         				type = normal
+         				from stage = "Match Scheduled"
+         				to stage = "Match Cancelled"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				complete_match as "Mark Match as Completed"
+    				{
+         				type = normal
+         				from stage = "Match In Progress"
+         				to stage = "Match Completed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				complete_replay as "Complete Replay Match"
+    				{
+         				type = normal
+         				from stage = "Match Replayed"
+         				to stage = "Match Completed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				declare_result as "Declare Result Based on Rules"
+    				{
+         				type = normal
+         				from stage = "Match Abandoned"
+         				to stage = "Match Declared Result"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				finalize_results as "Finalize Match Results"
+    				{
+         				type = normal
+         				from stage = "Match Completed"
+         				to stage = "Match Status Updated"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				postpone_match as "Postpone Match"
+    				{
+         				type = normal
+         				from stage = "Match Scheduled"
+         				to stage = "Match Postponed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				replay_match as "Schedule Replay"
+    				{
+         				type = normal
+         				from stage = "Match Completed"
+         				to stage = "Match Replayed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				reschedule_match as "Reschedule Match"
+    				{
+         				type = normal
+         				from stage = "Match Postponed"
+         				to stage = "Match Rescheduled"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				start_match as "Start Match"
+    				{
+         				type = normal
+         				from stage = "Match Scheduled"
+         				to stage = "Match In Progress"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+        			}
+    			}
+    			points_table_and_playoff_calculation as "Points Table and Playoff Calculation"
+    			{
+        			type = Blueprint
+        			form = points_table
+        			start
+        			{
+            			start stage = "Points Table Entry Created"
+        			}
+        			stages
+        			{
+           			"Points Table Entry Created"
+           			{
+           			}
+           			"Points Calculated"
+           			{
+           			}
+           			"Playoff Qualifiers Determined"
+           			{
+           			}
+           			"Points Table Re-validated"
+           			{
+           			}
+           			"Playoff Standings Published"
+           			{
+           			}
+           			"Playoff Qualifiers Re-evaluated"
+           			{
+           			}
+           			"Playoff Schedule Confirmed"
+           			{
+           			}
+           			"Standings Reverted"
+           			{
+           			}
+           			"Playoff Matches in Progress"
+           			{
+           			}
+           			"Schedule Adjusted"
+           			{
+           			}
+           			"Playoff Matches Completed"
+           			{
+           			}
+           			"Playoff Matches Suspended"
+           			{
+           			}
+           			"Champion Declared"
+           			{
+           			}
+           			"Playoff Results Reviewed"
+           			{
+           			}
+           			"Tournament Closed"
+           			{
+           			}
+           			"Playoff Standings Re-evaluated"
+           			{
+           			}
+           			"Playoff Matches Cancelled"
+           			{
+           			}
+           			"Playoff Matches Resumed"
+           			{
+           			}
+        			}
+        			transitions
+        			{
+    				adjust_schedule as "Adjust Playoff Schedule Due to External Factors"
+    				{
+         				type = normal
+         				from stage = "Playoff Schedule Confirmed"
+         				to stage = "Schedule Adjusted"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				calculate_points as "Calculate Points Based on Match Results"
+    				{
+         				type = normal
+         				from stage = "Points Table Entry Created"
+         				to stage = "Points Calculated"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				cancel_playoff_matches as "Cancel Playoff Matches Permanently"
+    				{
+         				type = normal
+         				from stage = "Playoff Matches Suspended"
+         				to stage = "Playoff Matches Cancelled"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				close_tournament as "Close Tournament and Archive All Records"
+    				{
+         				type = normal
+         				from stage = "Champion Declared"
+         				to stage = "Tournament Closed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				close_tournament_no_playoffs as "Close Tournament Without Playoffs"
+    				{
+         				type = normal
+         				from stage = "Playoff Matches Cancelled"
+         				to stage = "Tournament Closed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				complete_playoff_matches as "Finalize All Playoff Matches"
+    				{
+         				type = normal
+         				from stage = "Playoff Matches in Progress"
+         				to stage = "Playoff Matches Completed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				confirm_playoff_schedule as "Confirm Playoff Match Schedule"
+    				{
+         				type = normal
+         				from stage = "Playoff Standings Published"
+         				to stage = "Playoff Schedule Confirmed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				declare_champion as "Declare Tournament Champion Based on Playoff Results"
+    				{
+         				type = normal
+         				from stage = "Playoff Matches Completed"
+         				to stage = "Champion Declared"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				determine_playoff_qualifiers as "Determine Playoff Qualifiers Using Points and Net Run Rate"
+    				{
+         				type = normal
+         				from stage = "Points Calculated"
+         				to stage = "Playoff Qualifiers Determined"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				publish_playoff_standings as "Publish Final Playoff Qualifiers"
+    				{
+         				type = normal
+         				from stage = "Playoff Qualifiers Determined"
+         				to stage = "Playoff Standings Published"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				reevaluate_qualifiers as "Re-evaluate Qualifiers Due to Dispute or Error"
+    				{
+         				type = normal
+         				from stage = "Playoff Qualifiers Determined"
+         				to stage = "Playoff Qualifiers Re-evaluated"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				reevaluate_standings as "Re-evaluate Standings Due to Review Findings"
+    				{
+         				type = normal
+         				from stage = "Playoff Results Reviewed"
+         				to stage = "Playoff Standings Re-evaluated"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				resume_playoff_matches as "Resume Playoff Matches"
+    				{
+         				type = normal
+         				from stage = "Playoff Matches Suspended"
+         				to stage = "Playoff Matches in Progress"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				revalidate_points as "Re-validate Points Due to Discrepancy"
+    				{
+         				type = normal
+         				from stage = "Points Calculated"
+         				to stage = "Points Table Re-validated"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				revert_standings as "Revert to Previous Standings"
+    				{
+         				type = normal
+         				from stage = "Playoff Standings Published"
+         				to stage = "Standings Reverted"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				revert_to_initial as "Revert to Initial Entry State"
+    				{
+         				type = normal
+         				from stage = "Standings Reverted"
+         				to stage = "Points Table Entry Created"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				review_playoff_results as "Review Playoff Results for Accuracy"
+    				{
+         				type = normal
+         				from stage = "Playoff Matches Completed"
+         				to stage = "Playoff Results Reviewed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				start_playoff_matches as "Begin Playoff Matches"
+    				{
+         				type = normal
+         				from stage = "Playoff Schedule Confirmed"
+         				to stage = "Playoff Matches in Progress"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				suspend_playoff_matches as "Suspend Matches Due to External Issues"
+    				{
+         				type = normal
+         				from stage = "Playoff Matches in Progress"
+         				to stage = "Playoff Matches Suspended"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+        			}
+    			}
+		}
+
+
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Performance Analyst"
+			{
+				name = "Performance Analyst"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Analyze player statistics such as runs, wickets, and strike rates \n"
+				ModulePermissions
+				{
+					points_table
+					{
+						enabled= Viewall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							points_table_Report={"View"}
+						}
+					}
+					playoff_qualifiers
+					{
+						enabled= Viewall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							playoff_qualifiers_Report={"View"}
+						}
+					}
+					teams
+					{
+						enabled= Viewall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							teams_Report={"View"}
+						}
+					}
+					matches
+					{
+						enabled= Viewall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							matches_Report={"View"}
+						}
+					}
+					players
+					{
+						enabled= Viewall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							players_by_role={"View"}
+							players_Report={"View"}
+						}
+					}
+				}
+			}
+			"Data Integrity Officer"
+			{
+				name = "Data Integrity Officer"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Validate and audit data entries across teams, players, and matches \n"
+				ModulePermissions
+				{
+					points_table
+					{
+						enabled= Viewall,Modifyall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							points_table_Report={"View","Edit","Delete"}
+						}
+					}
+					playoff_qualifiers
+					{
+						enabled= Viewall,Modifyall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							playoff_qualifiers_Report={"View","Edit","Delete"}
+						}
+					}
+					teams
+					{
+						enabled= Viewall,Modifyall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							teams_Report={"View","Edit","Delete"}
+						}
+					}
+					matches
+					{
+						enabled= Viewall,Modifyall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							matches_Report={"View","Edit","Delete"}
+						}
+					}
+					players
+					{
+						enabled= Viewall,Modifyall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							players_by_role={"View","Edit","Delete"}
+							players_Report={"View","Edit","Delete"}
+						}
+					}
+				}
+			}
+			"Developer"
+			{
+				name = "Developer"
+				type = Developer
+				permissions = {Chat:false, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Developer Profile\n"
+			}
+			"League Administrator"
+			{
+				name = "League Administrator"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Manage team registrations and team details \n"
+				ModulePermissions
+				{
+					points_table
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							points_table_Report={"View","Edit","Delete"}
+						}
+					}
+					playoff_qualifiers
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							playoff_qualifiers_Report={"View","Edit","Delete"}
+						}
+					}
+					teams
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							teams_Report={"View","Edit","Delete"}
+						}
+					}
+					matches
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							matches_Report={"View","Edit","Delete"}
+						}
+					}
+				}
+			}
+			"Match Coordinator"
+			{
+				name = "Match Coordinator"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Input match results and update scores post-match \n"
+				ModulePermissions
+				{
+					points_table
+					{
+						enabled= Viewall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							points_table_Report={"View"}
+						}
+					}
+					matches
+					{
+						enabled= Create,Viewall,Modifyall,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							matches_Report={"View","Edit","Delete"}
+						}
+					}
+					players
+					{
+						enabled= Viewall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							players_by_role={"View"}
+							players_Report={"View"}
+						}
+					}
+				}
+			}
+			"Player"
+			{
+				name = "Player"
+				type = Customer_Portal
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Track personal performance stats like runs, wickets, and strike rate \n"
+				ModulePermissions
+				{
+					points_table
+					{
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							points_table_Report={"View"}
+						}
+					}
+					matches
+					{
+						enabled= Viewall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							matches_Report={"View"}
+						}
+					}
+					players
+					{
+						enabled= Viewall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							players_by_role={"View","Edit"}
+							players_Report={"View","Edit"}
+						}
+					}
+				}
+			}
+			"Customer"
+			{
+				name = "Customer"
+				type = Customer_Portal
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This is the default profile having only add and view permission.\n"
+			}
+			"Team Coach"
+			{
+				name = "Team Coach"
+				type = Customer_Portal
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "View team performance metrics and standings \n"
+				ModulePermissions
+				{
+					points_table
+					{
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							points_table_Report={"View"}
+						}
+					}
+					teams
+					{
+						enabled= Viewall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							teams_Report={"View"}
+						}
+					}
+					matches
+					{
+						enabled= Viewall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							matches_Report={"View"}
+						}
+					}
+					players
+					{
+						enabled= Viewall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							players_by_role={"View"}
+							players_Report={"View"}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+
+	web
+	{
+		forms
+		{
+			form matches
+			{
+				label placement = left
+			}
+			form players
+			{
+				label placement = left
+			}
+			form playoff_qualifiers
+			{
+				label placement = left
+			}
+			form points_table
+			{
+				label placement = left
+			}
+			form teams
+			{
+				label placement = left
+			}
+		}
+		reports
+		{
+			report matches_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								team_1 as "Team 1"
+								team_2 as "Team 2"
+								match_date as "Match Date"
+								venue as "Venue"
+								team_1_score as "Team 1 Score"
+								team_2_score as "Team 2 Score"
+								overs_played as "Overs Played"
+								winner as "Winner"
+								status as "Status"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								team_1 as "Team 1"
+								team_2 as "Team 2"
+								match_date as "Match Date"
+								venue as "Venue"
+								team_1_score as "Team 1 Score"
+								team_2_score as "Team 2 Score"
+								overs_played as "Overs Played"
+								winner as "Winner"
+								status as "Status"
+							)
+						)
+						datablock2
+						(
+							layout type = -2
+		     				title = "Winner"
+		     				related field = winner
+							fields
+							(
+								team_id as "Team ID"
+								team_name as "Team Name"
+								coach_name as "Coach Name"
+								home_ground as "Home Ground"
+								matches_played as "Matches Played"
+								wins as "Wins"
+								losses as "Losses"
+								points as "Points"
+								net_run_rate as "Net Run Rate"
+							)
+						)
+						datablock3
+						(
+							layout type = -2
+		     				title = "Team 1"
+		     				related field = team_1
+							fields
+							(
+								team_id as "Team ID"
+								team_name as "Team Name"
+								coach_name as "Coach Name"
+								home_ground as "Home Ground"
+								matches_played as "Matches Played"
+								wins as "Wins"
+								losses as "Losses"
+								points as "Points"
+								net_run_rate as "Net Run Rate"
+							)
+						)
+						datablock4
+						(
+							layout type = -2
+		     				title = "Team 2"
+		     				related field = team_2
+							fields
+							(
+								team_id as "Team ID"
+								team_name as "Team Name"
+								coach_name as "Coach Name"
+								home_ground as "Home Ground"
+								matches_played as "Matches Played"
+								wins as "Wins"
+								losses as "Losses"
+								points as "Points"
+								net_run_rate as "Net Run Rate"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report points_table_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								team as "Team"
+								wins as "Wins"
+								losses as "Losses"
+								points as "Points"
+								net_run_rate as "Net Run Rate"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								team as "Team"
+								wins as "Wins"
+								losses as "Losses"
+								points as "Points"
+								net_run_rate as "Net Run Rate"
+							)
+						)
+						datablock2
+						(
+							layout type = -2
+		     				title = "Team"
+		     				related field = team
+							fields
+							(
+								team_id as "Team ID"
+								team_name as "Team Name"
+								coach_name as "Coach Name"
+								home_ground as "Home Ground"
+								matches_played as "Matches Played"
+								wins as "Wins"
+								losses as "Losses"
+								points as "Points"
+								net_run_rate as "Net Run Rate"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report players_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								player_name as "Player Name"
+								team as "Team"
+								role as "Role"
+								runs as "Runs"
+								wickets as "Wickets"
+								strike_rate as "Strike Rate"
+								economy as "Economy"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								player_name as "Player Name"
+								team as "Team"
+								role as "Role"
+								runs as "Runs"
+								wickets as "Wickets"
+								strike_rate as "Strike Rate"
+								economy as "Economy"
+							)
+						)
+						datablock2
+						(
+							layout type = -2
+		     				title = "Team"
+		     				related field = team
+							fields
+							(
+								team_id as "Team ID"
+								team_name as "Team Name"
+								coach_name as "Coach Name"
+								home_ground as "Home Ground"
+								matches_played as "Matches Played"
+								wins as "Wins"
+								losses as "Losses"
+								points as "Points"
+								net_run_rate as "Net Run Rate"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report players_by_role
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = 1
+							fields
+							(
+								player_name as "Player Name"
+								team as "Team"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								player_name as "Player Name"
+								team as "Team"
+								role as "Role"
+								runs as "Runs"
+								wickets as "Wickets"
+								strike_rate as "Strike Rate"
+								economy as "Economy"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report teams_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								team_id as "Team ID"
+								team_name as "Team Name"
+								coach_name as "Coach Name"
+								home_ground as "Home Ground"
+								matches_played as "Matches Played"
+								wins as "Wins"
+								losses as "Losses"
+								points as "Points"
+								net_run_rate as "Net Run Rate"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								team_id as "Team ID"
+								team_name as "Team Name"
+								coach_name as "Coach Name"
+								home_ground as "Home Ground"
+								matches_played as "Matches Played"
+								wins as "Wins"
+								losses as "Losses"
+								points as "Points"
+								net_run_rate as "Net Run Rate"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report playoff_qualifiers_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								team as "Team"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								team as "Team"
+							)
+						)
+						datablock2
+						(
+							layout type = -2
+		     				title = "Team"
+		     				related field = team
+							fields
+							(
+								team_id as "Team ID"
+								team_name as "Team Name"
+								coach_name as "Coach Name"
+								home_ground as "Home Ground"
+								matches_played as "Matches Played"
+								wins as "Wins"
+								losses as "Losses"
+								points as "Points"
+								net_run_rate as "Net Run Rate"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+		}
+		menu
+		{
+			space Space
+			{
+				displayname = "Space"
+				icon = "objects-spaceship"
+
+				section Section_1
+				{
+					displayname = "Dashboard"
+					icon = "ui-1-dashboard-half"
+					page DashBoard
+					{
+						icon = "ui-1-dashboard-half"
+					}
+				}
+				section Section_2
+				{
+					displayname = "Matches"
+					icon = "food-matches"
+					form  matches
+					{
+						icon = "ui-1-bold-add"
+					}
+					report matches_Report
+					{
+						icon = "food-matches"
+					}
+				}
+				section Section_3
+				{
+					displayname = "Points Table"
+					icon = "furniture-table"
+					form  points_table
+					{
+						icon = "ui-1-bold-add"
+					}
+					report points_table_Report
+					{
+						icon = "furniture-table"
+					}
+				}
+				section Section_4
+				{
+					displayname = "Players"
+					icon = "tech-player-48"
+					form  players
+					{
+						icon = "ui-1-bold-add"
+					}
+					report players_Report
+					{
+						icon = "travel-world"
+					}
+					report players_by_role
+					{
+						icon = "media-1-play-69"
+					}
+				}
+				section Section_5
+				{
+					displayname = "Teams"
+					icon = "users-multiple-11"
+					form  teams
+					{
+						icon = "ui-1-bold-add"
+					}
+					report teams_Report
+					{
+						icon = "travel-world"
+					}
+				}
+				section Section_6
+				{
+					displayname = "Playoff Qualifiers"
+					icon = "food-matches"
+					form  playoff_qualifiers
+					{
+						icon = "ui-1-bold-add"
+					}
+					report playoff_qualifiers_Report
+					{
+						icon = "food-matches"
+					}
+				}
+				section ZC_App_Preferences
+				{
+					displayname = "App Preferences"
+					icon = "design-app"
+					systemcomponent
+					{
+						type = localization
+						displayname = "Language Selection"
+						icon = "education-language"
+					}
+					systemcomponent
+					{
+						type = connection
+						displayname = "Integrations"
+						icon = "tech-2-connection"
+					}
+				}
+				section ZC_Approvals
+				{
+					displayname = "Approvals"
+					icon = "ui-2-hourglass"
+					systemcomponent
+					{
+						type = approval
+						approval status = pending
+						displayname = "Pending Tasks"
+						icon = "ui-2-hourglass"
+					}
+					systemcomponent
+					{
+						type = approval
+						approval status = completed
+						displayname = "Completed Tasks"
+						icon = "design-todo"
+					}
+				}
+				section SharedAnalytics_Section
+				{
+					type = shared_user_report_section
+					displayname = "Reports"
+					icon = "business-chart-bar-33"
+				}
+			}
+			preference
+			{
+				icon
+				{
+					style = solid
+					show = {space,section,component}
+				}
+			}
+		}
+		customize
+		{
+			new theme = 11
+			font = "poppins"
+			color options
+			{
+				color = "3"
+			}
+			logo
+			{
+				preference = "none"
+				placement = "left"
+			}
+		}
+	}
+	phone
+	{
+		forms
+		{
+			form matches
+			{
+				label placement = auto
+			}
+			form players
+			{
+				label placement = auto
+			}
+			form playoff_qualifiers
+			{
+				label placement = auto
+			}
+			form points_table
+			{
+				label placement = auto
+			}
+			form teams
+			{
+				label placement = auto
+			}
+		}
+		customize
+		{
+			layout = slidingpane
+			font = "default"
+			style = "3"
+			color options
+			{
+				color = yellow
+			}
+			logo
+			{
+				preference = "none"
+			}
+		}
+	}
+	tablet
+	{
+		forms
+		{
+			form matches
+			{
+				label placement = auto
+			}
+			form players
+			{
+				label placement = auto
+			}
+			form playoff_qualifiers
+			{
+				label placement = auto
+			}
+			form points_table
+			{
+				label placement = auto
+			}
+			form teams
+			{
+				label placement = auto
+			}
+		}
+		customize
+		{
+			layout = slidingpane
+			font = "default"
+			style = "3"
+			color options
+			{
+				color = yellow
+			}
+			logo
+			{
+				preference = "none"
+			}
+		}
+	}
+	translation
+{
+{"Language_Settings":{"LANGAGUE_WITH_LOGIN":"browser"}}
+}
+}
